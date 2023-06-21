@@ -8,6 +8,8 @@ const installInstr        =  "installInstr";
 const usageInst           =  "usageInst";
 const contriGuide         =  "contriGuide";
 const testInstr           =  "testInstr";
+const userName            =  "userName";
+const userEmail           =  "userEmail";
 
 const questions = [
     {
@@ -22,12 +24,12 @@ const questions = [
     },
     {
         type: "input",
-        message: "Give a brief overview of the installation instructions:",
+        message: "Provide installation instructions:",
         name: installInstr
     },
     {
         type: "input",
-        message: "Give a brief overview of the usage instructions:",
+        message: "Provide usage instructions:",
         name: usageInst
     },
     {
@@ -42,13 +44,23 @@ const questions = [
     },
     {
         type: "input",
-        message: "Give a brief overview of the contribution guidelines:",
+        message: "Provide contribution guidelines:",
         name: contriGuide
     },
     {
         type: "input",
-        message: "Give a brief overview of the test instructions:",
+        message: "Provide utility test instructions:",
         name: testInstr
+    },
+    {
+        type: "input",
+        message: "Direct questions to this username: ",
+        name: userName
+    },
+    {
+        type: "input",
+        message: "Direct questions to this email: ",
+        name: userEmail
     }
 ];
 
@@ -66,6 +78,16 @@ function generateTableOfContents(linkFormat, readMeSections)
     }
 
     return tableOfContents;
+}
+
+function generateQuestionsSection(userName, userEmail) {
+    let questionSectionContent;
+
+    questionSectionContent = `Any questions regarding this utility can be directed to: 
+    \n- Author: ${userName} 
+    \n- Email: ${userEmail}`;
+
+    return questionSectionContent;
 }
 
 // TODO: Create a function to write README file
@@ -101,7 +123,7 @@ function writeToFile(fileName, data, readMeSections) {
     fs.appendFileSync(fileName, `${data.testInstr}\n`, writeToFileErrorHandler);
 
     fs.appendFileSync(fileName, `${mdFormat_H2} ${readMeSections[5]}\n`, writeToFileErrorHandler);
-    // fs.appendFileSync(fileName, data.projectDescription, writeToFileErrorHandler);
+    fs.appendFileSync(fileName, `${generateQuestionsSection(data.userName, data.userEmail)}\n`, writeToFileErrorHandler);
 }
 
 // TODO: Create a function to initialize app
