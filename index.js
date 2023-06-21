@@ -72,8 +72,10 @@ function generateTableOfContents(linkFormat, readMeSections)
 function writeToFile(fileName, data, readMeSections) {
     const mdFormat_H1 = "#";
     const mdFormat_H2 = "##";
-    const mdFormat_H3 = "###";
-    const mdFormat_BulletPoint = "*";
+    const readMeDirectory = "./generated-readme";
+
+    fs.mkdirSync(readMeDirectory);
+    fileName = `${readMeDirectory}/${fileName}`;
 
     fs.writeFileSync(fileName, `${mdFormat_H1} ${data.projectName}\n`, writeToFileErrorHandler);
 
@@ -113,7 +115,7 @@ function init() {
 
     inquirer
         .prompt(questions)
-        .then(response => writeToFile(`${response.projectName}-readme.md`, response, readMeSections));
+        .then(response => writeToFile("README.md", response, readMeSections));
 }
 
 // Function call to initialize app
