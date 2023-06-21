@@ -16,17 +16,17 @@ const questions = [
         name: projectName
     },
     {
-        type: "editor",
+        type: "input",
         message: "Give a brief description of the project:",
         name: projectDescription
     },
     {
-        type: "editor",
+        type: "input",
         message: "Give a brief overview of the installation instructions:",
         name: installInstr
     },
     {
-        type: "editor",
+        type: "input",
         message: "Give a brief overview of the usage instructions:",
         name: usageInst
     },
@@ -41,12 +41,12 @@ const questions = [
         ]
     },
     {
-        type: "editor",
+        type: "input",
         message: "Give a brief overview of the contribution guidelines:",
         name: contriGuide
     },
     {
-        type: "editor",
+        type: "input",
         message: "Give a brief overview of the test instructions:",
         name: testInstr
     }
